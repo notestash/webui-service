@@ -1,0 +1,22 @@
+server:
+  port: 80
+services:
+  note-service.url: ${NOTES_CORE_URL}
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          okta:
+            token-uri: ${NOTES_OAUTH2_TOKEN_URI}
+            authorization-uri: ${NOTES_OAUTH2_AUTHORIZATION_URI}
+            userinfo-uri: ${NOTES_OAUTH2_USERINFO_URI}
+            jwk-set-uri: ${NOTES_OAUTH2_JWK_SET_URI}
+        registration:
+          okta:
+            provider: okta
+            client-id: ${NOTES_WEBUI_OAUTH2_CLIENT_ID}
+            client-secret: ${NOTES_WEBUI_OAUTH2_CLIENT_SECRET}
+            authorization-grant-type: authorization_code
+            redirect-uri: ${NOTES_WEBUI_OAUTH2_REDIRECT_URL}
+            scope: openid, email, profile, notes:read, notes:create

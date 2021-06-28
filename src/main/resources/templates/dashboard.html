@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<span th:if="${error?.empty}" th:text="${error}"></span>
+
+<h1>Form</h1>
+<form action="#" th:action="@{/dashboard/users/__${userId}__}" th:object="${noteSaveDto}" method="post">
+    <p>Message: <input type="text" th:field="${noteSaveDto.message}"/></p>
+    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+</form>
+
+<table xmlns:th="http://www.w3.org/1999/xhtml" border="1" cellpadding="5">
+    <thead>
+    <tr>
+        <th> ID</th>
+        <th> Created Date</th>
+        <th> Message</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${notesGetDtoList.empty}">
+        <td colspan="3"> No Notes Available</td>
+    </tr>
+    <tr th:each="note : ${notesGetDtoList}">
+        <td><span th:text="${note.id}"></span></td>
+        <td><span th:text="${note.createdDate}"></span></td>
+        <td><span th:text="${note.message}"></span></td>
+    </tr>
+    </tbody>
+</table>
+</html>
